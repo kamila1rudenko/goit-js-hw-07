@@ -1,34 +1,14 @@
-// Задача 3. 
+const input = document.getElementById("name-input");
+const output = document.getElementById("name-output");
 
-class StringBuilder {
-  #value;
+function updateNameOutput() {
+  const trimmedValue = input.value.trim();
 
-  constructor(initialValue) {
-    this.#value = initialValue;
-  }
-
-  getValue() {
-    return this.#value;
-  }
-
-  padEnd(str) {
-    this.#value += str;
-  }
-
-  padStart(str) {
-    this.#value = str + this.#value;
-  }
-
-  padBoth(str) {
-    this.#value = str + this.#value + str;
+  if (trimmedValue === "") {
+    output.textContent = "Anonymous";
+  } else {
+    output.textContent = trimmedValue;
   }
 }
 
-const builder = new StringBuilder(".");
-console.log(builder.getValue()); // "."
-builder.padStart("^");
-console.log(builder.getValue()); // "^."
-builder.padEnd("^");
-console.log(builder.getValue()); // "^.^"
-builder.padBoth("=");
-console.log(builder.getValue()); // "=^.^="
+input.addEventListener("input", updateNameOutput);
